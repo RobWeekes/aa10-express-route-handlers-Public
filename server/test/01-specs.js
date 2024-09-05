@@ -1,6 +1,8 @@
 const chai = require("chai");
 let chaiHttp = require("chai-http");
 let server;
+// WAS getting error msg when running npm test \/ - I had to run "npm install" in server folder!
+// Instead change the require of chai.js in C:\Users\weeke\Git\aa10-express-route-handlers\server\test\01-specs.js to a dynamic import() which is available in all CommonJS modules.
 chai.use(chaiHttp);
 const expect = chai.expect;
 
