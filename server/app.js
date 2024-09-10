@@ -168,6 +168,44 @@ app.get('/songs/:songId', (req, res) => {
     return res.json(song);
 })
 
+app.post('/albums/:albumId/songs', (req, res) => {
+    let newSong = addSongByAlbumId(req.params.albumId, req.body);
+    console.log('POST /albums/:albumId/songs :', newSong);
+    return res.status(201).json(newSong);
+})
+
+app.get('/artists/:artistId/songs', (req, res) => {
+    // console.log('req.params.artistId :', req.params.artistId);
+    let artistSongs = getSongsByArtistId(req.params.artistId);
+    console.log('GET /artists/:artistId/songs :', artistSongs);
+    return res.json(artistSongs);
+})
+
+app.get('/albums/:albumId/songs', (req, res) => {
+    let albumSongs = getSongsByAlbumId(req.params.albumId);
+    console.log('GET /albums/:albumId/songs :', albumSongs);
+    return res.json(albumSongs);
+})
+
+app.put('/songs/:songId', (req, res) => {
+    let editedSong = editSongBySongId(req.params.songId, req.body);
+    console.log('PUT /songs/:songId :', editedSong);
+    return res.json(editedSong);
+})
+
+app.patch('/songs/:songId', (req, res) => {
+    let editedSong = editSongBySongId(req.params.songId, req.body);
+    console.log('PATCH /songs/:songId :', editedSong);
+    return res.json(editedSong);
+})
+
+app.delete('/songs/:songId', (req, res) => {
+    deleteSongBySongId(req.params.songId);
+    // console.log('DELETE /songs/:songId: ', songs);   // messes up test, 'songs' is undefined
+    return res.status(200).json({ message: 'Successfully deleted' });
+})
+
+
 
 // https://appacademy.instructure.com/courses/334/pages/express-route-handlers-2?module_item_id=58206
 // The res object also supports sending JSON back to the client through the .json() method:
